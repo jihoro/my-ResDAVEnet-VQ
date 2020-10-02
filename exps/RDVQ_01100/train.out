@@ -1,4 +1,10 @@
-I am process 226977, running on b591cbe591ca: starting (Fri Oct  2 04:38:44 2020)
+Downloading: "https://download.pytorch.org/models/resnet50-19c8e357.pth" to /root/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth
+
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]
+ 19%|█▉        | 18.5M/97.8M [00:00<00:00, 194MB/s]
+ 50%|█████     | 49.1M/97.8M [00:00<00:00, 220MB/s]
+ 79%|███████▉  | 77.4M/97.8M [00:00<00:00, 239MB/s]
+100%|██████████| 97.8M/97.8M [00:00<00:00, 276MB/s]I am process 324, running on 02bae8324721: starting (Fri Oct  2 07:33:54 2020)
 audio_model                              : ResDavenetVQ
 image_model                              : Resnet50
 freeze_image_model                       : False
@@ -38,46 +44,54 @@ current #steps=0, #epochs=1
 start training...
 cuda
 Learning rate @     1 is 0.000200
-[W TensorIterator.cpp:924] Warning: Mixed memory format inputs detected while calling the operator. The operator will output channels_last tensor even if some of the inputs are not in channels_last format. (function operator())
-[W TensorIterator.cpp:918] Warning: Mixed memory format inputs detected while calling the operator. The operator will output contiguous tensor even if some of the inputs are in channels_last format. (function operator())
-Epoch: [1][0/469]  Time=127.254 (127.254)  Data=122.989 (122.989)  Loss=3.121 (3.121)  Bwd=1.145 (1.145)  Loss total=38.9700 (38.9700)  QLoss=(None, 7.480, 7.342, None, None)  Perplexity=(None, 49.361, 41.478, None, None)
-Epoch: [1][100/469]  Time=2.345 (15.368)  Data=0.013 (13.013)  Loss=1.394 (1.411)  Bwd=0.938 (0.945)  Loss total=7.5366 (14.2185)  QLoss=(None, 1.677, 1.386, None, None)  Perplexity=(None, 17.976, 6.410, None, None)
-Epoch: [1][200/469]  Time=2.331 (14.879)  Data=0.006 (12.538)  Loss=1.371 (1.399)  Bwd=0.954 (0.942)  Loss total=5.7916 (10.4264)  QLoss=(None, 1.312, 0.656, None, None)  Perplexity=(None, 18.835, 6.476, None, None)
-Epoch: [1][300/469]  Time=2.209 (14.467)  Data=0.011 (12.142)  Loss=1.275 (1.384)  Bwd=0.924 (0.941)  Loss total=5.4434 (8.8387)  QLoss=(None, 1.072, 0.450, None, None)  Perplexity=(None, 19.408, 6.374, None, None)
-Epoch: [1][400/469]  Time=2.377 (14.381)  Data=0.016 (12.055)  Loss=1.395 (1.385)  Bwd=0.965 (0.941)  Loss total=5.2101 (7.9537)  QLoss=(None, 0.825, 0.381, None, None)  Perplexity=(None, 21.773, 7.197, None, None)
+
+Epoch: [1][100/469]  Time=2.142 (16.278)  Data=0.014 (14.251)  Loss=1.230 (1.095)  Bwd=0.898 (0.933)  Loss total=6.7110 (13.6903)  QLoss=(None, 1.748, 1.127, None, None)  Perplexity=(None, 18.359, 4.705, None, None)
+Epoch: [1][200/469]  Time=2.062 (14.198)  Data=0.004 (12.161)  Loss=1.128 (1.105)  Bwd=0.931 (0.932)  Loss total=5.8402 (10.1088)  QLoss=(None, 1.382, 0.670, None, None)  Perplexity=(None, 19.095, 5.163, None, None)
+Epoch: [1][300/469]  Time=1.810 (13.315)  Data=0.010 (11.301)  Loss=0.859 (1.080)  Bwd=0.942 (0.935)  Loss total=5.6197 (8.6633)  QLoss=(None, 1.176, 0.771, None, None)  Perplexity=(None, 20.783, 7.167, None, None)
+Epoch: [1][400/469]  Time=1.852 (13.152)  Data=0.005 (11.136)  Loss=0.930 (1.081)  Bwd=0.917 (0.935)  Loss total=5.0427 (7.8042)  QLoss=(None, 0.918, 0.316, None, None)  Perplexity=(None, 22.443, 6.331, None, None)
 WARNING: truncate 361/2409 frames
 WARNING: truncate 30303/32351 frames
+tcmalloc: large alloc 2621440000 bytes == 0x7f03e5c00000 @  0x7f07cb94fb6b 0x7f07cb96f379 0x7f0777ef892e 0x7f0777efa946 0x7f07b02d6bb3 0x7f07afd8b17a 0x7f07afd8c293 0x7f07b028cedf 0x7f07afe1a6a6 0x7f07afe1b7b0 0x7f07b00721c9 0x7f07afa13689 0x7f07b0151919 0x7f07afe1d09b 0x7f07b0207a08 0x7f07afa13689 0x7f07b0151709 0x7f07b1e03fc7 0x7f07afa13689 0x7f07b0151709 0x7f07bf8c8a0e 0x50a7f5 0x50c1f4 0x509918 0x50a64d 0x50c1f4 0x507f24 0x509c50 0x50a64d 0x50c1f4 0x507f24
+WARNING: truncate 7497/9545 frames
+ * Audio R@10 0.003 / Image R@10 0.003 / Mean R@10 0.003 over 5000 validation pairs
+ * Audio R@5 0.002 / Image R@5 0.002 / Mean R@5 0.002 over 5000 validation pairs
+ * Audio R@1 0.000 / Image R@1 0.000 / Mean R@1 0.000 over 5000 validation pairs
+Finished epoch 1. Time elapsed = 10472s. Current Time = 2020-10-02 10:28:40.775297
+Learning rate @     2 is 0.000200
+[W accumulate_grad.h:165] Warning: grad and param do not obey the gradient layout contract. This is not an error, but may impair performance.
+grad.sizes() = [256, 256, 1, 1], strides() = [256, 1, 1, 1]
+param.sizes() = [256, 256, 1, 1], strides() = [256, 1, 256, 256] (function operator())
+Epoch: [2][31/469]  Time=2.327 (14.350)  Data=0.001 (12.312)  Loss=1.352 (1.100)  Bwd=0.971 (0.938)  Loss total=4.7587 (7.2403)  QLoss=(None, 0.782, 0.273, None, None)  Perplexity=(None, 22.561, 6.539, None, None)
+Epoch: [2][131/469]  Time=2.480 (15.633)  Data=0.006 (13.526)  Loss=1.487 (1.162)  Bwd=0.988 (0.946)  Loss total=4.4008 (6.8029)  QLoss=(None, 0.717, 0.239, None, None)  Perplexity=(None, 21.869, 6.260, None, None)
+Epoch: [2][231/469]  Time=2.596 (15.681)  Data=0.034 (13.524)  Loss=1.516 (1.205)  Bwd=1.046 (0.952)  Loss total=4.7954 (6.4769)  QLoss=(None, 0.686, 0.482, None, None)  Perplexity=(None, 22.325, 7.227, None, None)
+Epoch: [2][331/469]  Time=110.742 (15.894)  Data=108.347 (13.705)  Loss=1.445 (1.233)  Bwd=0.950 (0.956)  Loss total=4.0599 (6.2144)  QLoss=(None, 0.588, 0.180, None, None)  Perplexity=(None, 23.307, 6.237, None, None)
+Epoch: [2][431/469]  Time=2.454 (15.717)  Data=0.006 (13.508)  Loss=1.484 (1.250)  Bwd=0.964 (0.958)  Loss total=4.3985 (5.9876)  QLoss=(None, 0.493, 0.173, None, None)  Perplexity=(None, 24.559, 6.319, None, None)
+WARNING: truncate 361/2409 frames
+WARNING: truncate 30303/32351 frames
+tcmalloc: large alloc 2621440000 bytes == 0x102ae0000 @  0x7f07cb94fb6b 0x7f07cb96f379 0x7f0777ef892e 0x7f0777efa946 0x7f07b02d6bb3 0x7f07afd8b17a 0x7f07afd8c293 0x7f07b028cedf 0x7f07afe1a6a6 0x7f07afe1b7b0 0x7f07b00721c9 0x7f07afa13689 0x7f07b0151919 0x7f07afe1d09b 0x7f07b0207a08 0x7f07afa13689 0x7f07b0151709 0x7f07b1e03fc7 0x7f07afa13689 0x7f07b0151709 0x7f07bf8c8a0e 0x50a7f5 0x50c1f4 0x509918 0x50a64d 0x50c1f4 0x507f24 0x509c50 0x50a64d 0x50c1f4 0x507f24
+WARNING: truncate 7497/9545 frames
+ * Audio R@10 0.003 / Image R@10 0.006 / Mean R@10 0.005 over 5000 validation pairs
+ * Audio R@5 0.002 / Image R@5 0.002 / Mean R@5 0.002 over 5000 validation pairs
+ * Audio R@1 0.000 / Image R@1 0.000 / Mean R@1 0.000 over 5000 validation pairs
+Finished epoch 2. Time elapsed = 11239s. Current Time = 2020-10-02 13:36:04.366988
+Learning rate @     3 is 0.000190
+Epoch: [3][62/469]  Time=2.334 (16.478)  Data=0.014 (14.258)  Loss=1.369 (1.262)  Bwd=0.952 (0.958)  Loss total=3.7759 (5.7824)  QLoss=(None, 0.377, 0.152, None, None)  Perplexity=(None, 24.386, 7.051, None, None)
+Epoch: [3][162/469]  Time=2.425 (16.642)  Data=0.001 (14.404)  Loss=1.448 (1.278)  Bwd=0.976 (0.960)  Loss total=4.1088 (5.6178)  QLoss=(None, 0.409, 0.221, None, None)  Perplexity=(None, 25.095, 8.862, None, None)
 Traceback (most recent call last):
   File "run_ResDavenetVQ.py", line 225, in <module>
     args, exp_dir, resume)
-  File "/content/my-ResDAVEnet-VQ/steps/traintest.py", line 205, in train
-    recalls = validate(audio_model, image_model, test_loader, args)
-  File "/content/my-ResDAVEnet-VQ/steps/traintest.py", line 256, in validate
-    for i, (image_input, audio_input, nframes) in enumerate(val_loader):
+  File "/content/my-ResDAVEnet-VQ/steps/traintest.py", line 135, in train
+    for i, (image_input, audio_input, nframes) in enumerate(train_loader):
   File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 363, in __next__
     data = self._next_data()
-  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 403, in _next_data
-    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
-  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
-    data = [self.dataset[idx] for idx in possibly_batched_index]
-  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
-    data = [self.dataset[idx] for idx in possibly_batched_index]
-  File "/content/my-ResDAVEnet-VQ/dataloaders/image_caption_dataset.py", line 73, in __getitem__
-    audio, nframes = self._LoadAudio(os.path.join(self.audio_base_path, datum['wav']))
-  File "/content/my-ResDAVEnet-VQ/dataloaders/image_caption_dataset.py", line 55, in _LoadAudio
-    y, sr = librosa.load(path, None)
-  File "/usr/local/lib/python3.6/dist-packages/librosa/core/audio.py", line 119, in load
-    with audioread.audio_open(os.path.realpath(path)) as input_file:
-  File "/usr/local/lib/python3.6/dist-packages/audioread/__init__.py", line 107, in audio_open
-    backends = available_backends()
-  File "/usr/local/lib/python3.6/dist-packages/audioread/__init__.py", line 86, in available_backends
-    if ffdec.available():
-  File "/usr/local/lib/python3.6/dist-packages/audioread/ffdec.py", line 110, in available
-    creationflags=PROC_FLAGS,
-  File "/usr/local/lib/python3.6/dist-packages/audioread/ffdec.py", line 94, in popen_multiple
-    return subprocess.Popen(cmd, *args, **kwargs)
-  File "/usr/lib/python3.6/subprocess.py", line 729, in __init__
-    restore_signals, start_new_session)
-  File "/usr/lib/python3.6/subprocess.py", line 1318, in _execute_child
-    part = os.read(errpipe_read, 50000)
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 974, in _next_data
+    idx, data = self._get_data()
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 931, in _get_data
+    success, data = self._try_get_data()
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 779, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/usr/lib/python3.6/queue.py", line 173, in get
+    self.not_empty.wait(remaining)
+  File "/usr/lib/python3.6/threading.py", line 299, in wait
+    gotit = waiter.acquire(True, timeout)
 KeyboardInterrupt
