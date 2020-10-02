@@ -1,0 +1,83 @@
+I am process 226977, running on b591cbe591ca: starting (Fri Oct  2 04:38:44 2020)
+audio_model                              : ResDavenetVQ
+image_model                              : Resnet50
+freeze_image_model                       : False
+pretrained_image_model                   : True
+seed_dir                                 : 
+seed_epoch                               : -1
+margin                                   : 1.0
+layer_widths                             : 128,256,256,512,1024
+layer_depths                             : 2,2,2,2
+convsize                                 : 9
+seed                                     : 8675309
+VQ_commitment_cost                       : 1
+VQ_turnon                                : 0,1,1,0,0
+VQ_sizes                                 : 1024,1024,1024,1024,1024
+nonneg_init                              : False
+init_std                                 : 1
+init_ema_mass                            : 1
+jitter                                   : 0.12
+optim                                    : adam
+batch_size                               : 64
+lr                                       : 0.0002
+lr_decay                                 : 3
+lr_decay_multiplier                      : 0.95
+momentum                                 : 0.9
+weight_decay                             : 5e-07
+force_start_epoch                        : 0
+n_epochs                                 : 150
+n_print_steps                            : 100
+save_every                               : 10
+num_workers                              : 8
+loading data from ../gdrive/My Drive/flickr8k_spoken_captions/flickr8k_train.json / ../gdrive/My Drive/flickr8k_spoken_captions/flickr8k_dev.json
+
+Creating experiment directory: ./exps/RDVQ_01100
+Found 1 GPUs
+Total 226 trainable parameters
+current #steps=0, #epochs=1
+start training...
+cuda
+Learning rate @     1 is 0.000200
+[W TensorIterator.cpp:924] Warning: Mixed memory format inputs detected while calling the operator. The operator will output channels_last tensor even if some of the inputs are not in channels_last format. (function operator())
+[W TensorIterator.cpp:918] Warning: Mixed memory format inputs detected while calling the operator. The operator will output contiguous tensor even if some of the inputs are in channels_last format. (function operator())
+Epoch: [1][0/469]  Time=127.254 (127.254)  Data=122.989 (122.989)  Loss=3.121 (3.121)  Bwd=1.145 (1.145)  Loss total=38.9700 (38.9700)  QLoss=(None, 7.480, 7.342, None, None)  Perplexity=(None, 49.361, 41.478, None, None)
+Epoch: [1][100/469]  Time=2.345 (15.368)  Data=0.013 (13.013)  Loss=1.394 (1.411)  Bwd=0.938 (0.945)  Loss total=7.5366 (14.2185)  QLoss=(None, 1.677, 1.386, None, None)  Perplexity=(None, 17.976, 6.410, None, None)
+Epoch: [1][200/469]  Time=2.331 (14.879)  Data=0.006 (12.538)  Loss=1.371 (1.399)  Bwd=0.954 (0.942)  Loss total=5.7916 (10.4264)  QLoss=(None, 1.312, 0.656, None, None)  Perplexity=(None, 18.835, 6.476, None, None)
+Epoch: [1][300/469]  Time=2.209 (14.467)  Data=0.011 (12.142)  Loss=1.275 (1.384)  Bwd=0.924 (0.941)  Loss total=5.4434 (8.8387)  QLoss=(None, 1.072, 0.450, None, None)  Perplexity=(None, 19.408, 6.374, None, None)
+Epoch: [1][400/469]  Time=2.377 (14.381)  Data=0.016 (12.055)  Loss=1.395 (1.385)  Bwd=0.965 (0.941)  Loss total=5.2101 (7.9537)  QLoss=(None, 0.825, 0.381, None, None)  Perplexity=(None, 21.773, 7.197, None, None)
+WARNING: truncate 361/2409 frames
+WARNING: truncate 30303/32351 frames
+Traceback (most recent call last):
+  File "run_ResDavenetVQ.py", line 225, in <module>
+    args, exp_dir, resume)
+  File "/content/my-ResDAVEnet-VQ/steps/traintest.py", line 205, in train
+    recalls = validate(audio_model, image_model, test_loader, args)
+  File "/content/my-ResDAVEnet-VQ/steps/traintest.py", line 256, in validate
+    for i, (image_input, audio_input, nframes) in enumerate(val_loader):
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 363, in __next__
+    data = self._next_data()
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/dataloader.py", line 403, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/usr/local/lib/python3.6/dist-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/content/my-ResDAVEnet-VQ/dataloaders/image_caption_dataset.py", line 73, in __getitem__
+    audio, nframes = self._LoadAudio(os.path.join(self.audio_base_path, datum['wav']))
+  File "/content/my-ResDAVEnet-VQ/dataloaders/image_caption_dataset.py", line 55, in _LoadAudio
+    y, sr = librosa.load(path, None)
+  File "/usr/local/lib/python3.6/dist-packages/librosa/core/audio.py", line 119, in load
+    with audioread.audio_open(os.path.realpath(path)) as input_file:
+  File "/usr/local/lib/python3.6/dist-packages/audioread/__init__.py", line 107, in audio_open
+    backends = available_backends()
+  File "/usr/local/lib/python3.6/dist-packages/audioread/__init__.py", line 86, in available_backends
+    if ffdec.available():
+  File "/usr/local/lib/python3.6/dist-packages/audioread/ffdec.py", line 110, in available
+    creationflags=PROC_FLAGS,
+  File "/usr/local/lib/python3.6/dist-packages/audioread/ffdec.py", line 94, in popen_multiple
+    return subprocess.Popen(cmd, *args, **kwargs)
+  File "/usr/lib/python3.6/subprocess.py", line 729, in __init__
+    restore_signals, start_new_session)
+  File "/usr/lib/python3.6/subprocess.py", line 1318, in _execute_child
+    part = os.read(errpipe_read, 50000)
+KeyboardInterrupt

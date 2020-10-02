@@ -214,33 +214,33 @@ class ResDavenetVQ(ResDavenet):
 
         x = self.relu(self.bn1(self.conv1(x)))
         if nframes is not None:
-            cur_nframes = nframes / round(L / x.size(-1))
+            cur_nframes = torch.floor_divide(nframes, round(L / x.size(-1)))
         (quant_losses[0], x, flat_inputs[0],
          flat_onehots[0]) = self.maybe_quantize(x, 0, cur_nframes)
         x = self.maybe_jitter(x)
 
         x = self.layer1(x)
         if nframes is not None:
-            cur_nframes = nframes / round(L / x.size(-1))
+            cur_nframes = torch.floor_divide(nframes, round(L / x.size(-1)))
         (quant_losses[1], x, flat_inputs[1],
          flat_onehots[1]) = self.maybe_quantize(x, 1, cur_nframes)
         x = self.maybe_jitter(x)
         
         x = self.layer2(x)
         if nframes is not None:
-            cur_nframes = nframes / round(L / x.size(-1))
+            cur_nframes = torch.floor_divide(nframes, round(L / x.size(-1)))
         (quant_losses[2], x, flat_inputs[2],
          flat_onehots[2]) = self.maybe_quantize(x, 2, cur_nframes)
 
         x = self.layer3(x)
         if nframes is not None:
-            cur_nframes = nframes / round(L / x.size(-1))
+            cur_nframes = torch.floor_divide(nframes, round(L / x.size(-1)))
         (quant_losses[3], x, flat_inputs[3],
          flat_onehots[3]) = self.maybe_quantize(x, 3, cur_nframes)
         
         x = self.layer4(x)
         if nframes is not None:
-            cur_nframes = nframes / round(L / x.size(-1))
+            cur_nframes = torch.floor_divide(nframes, round(L / x.size(-1)))
         (quant_losses[4], x, flat_inputs[4],
          flat_onehots[4]) = self.maybe_quantize(x, 4, cur_nframes)
         

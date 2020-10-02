@@ -31,8 +31,8 @@ class ImageCaptionDataset(Dataset):
 
         # self.image_base_path = data_json.get('image_base_path', '')
         # self.audio_base_path = data_json.get('audio_base_path', '')
-        self.image_base_path = "/content/gdrive/My Drive/flickr8k_spoken_caption/imgs"
-        self.audio_base_path = "/content/gdrive/My Drive/flickr8k_spoken_caption/wavs"
+        self.image_base_path = "/content/gdrive/My Drive/flickr8k_spoken_captions/imgs"
+        self.audio_base_path = "/content/gdrive/My Drive/flickr8k_spoken_captions/wavs"
 
         self.audio_conf = audio_conf if audio_conf else {}
         self.image_conf = image_conf if image_conf else {}

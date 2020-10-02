@@ -120,7 +120,7 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
     epoch += 1
     print("current #steps=%s, #epochs=%s" % (global_step, epoch))
     print("start training...")
-
+    print(device)
     # Start training
     while epoch <= args.n_epochs:
         torch.cuda.empty_cache()
@@ -155,7 +155,7 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
             perplexities_str = numbers_to_str(perplexities)
 
             pooling_ratio = round(audio_input.size(-1) / audio_output.size(-1))
-            nframes.div_(pooling_ratio)
+            nframes = torch.floor_divide(nframes, pooling_ratio)
             S = compute_pooldot_similarity_matrix(
                     image_output, audio_output, nframes)
             I2A_sampled_loss = sampled_triplet_loss_from_S(S, args.margin)
@@ -268,7 +268,7 @@ def validate(audio_model, image_model, val_loader, args):
             A_embeddings.append(audio_output)
             
             pooling_ratio = round(audio_input.size(-1) / audio_output.size(-1))
-            nframes.div_(pooling_ratio)
+            nframes = torch.floor_divide(nframes, pooling_ratio)
 
             frame_counts.append(nframes.cpu())
 
