@@ -4,13 +4,13 @@
 
 
 python dump_hdf5_dataset.py \
-  "./filelist/train_original_with_alignments.json" \
-  "./data/PlacesEnglish400kTrainHDF5.json" \
-  "./data/PlacesEnglish400kTrain_audio.hdf5" \
-  "./data/PlacesEnglish400kTrain_image.hdf5"
+  "/content/flickr8k_spoken_captions/flickr8k_train.json" \
+  "/content/flickr8k_spoken_captions/flickr8k_trainHDF5.json" \
+  "/content/flickr8k_spoken_captions/flickr8k_train_audio.hdf5" \
+  "/content/flickr8k_spoken_captions/flickr8k_train_image.hdf5"
 
 python dump_hdf5_dataset.py \
-  "./filelist/val_original_with_alignments.json" \
-  "./data/PlacesEnglish400kValHDF5.json" \
-  "./data/PlacesEnglish400kVal_audio.hdf5" \
-  "./data/PlacesEnglish400kVal_image.hdf5"
+  "/content/flickr8k_spoken_captions/flickr8k_dev.json" \
+  "/content/flickr8k_spoken_captions/flickr8k_devHDF5.json" \
+  "/content/flickr8k_spoken_captions/flickr8k_dev_audio.hdf5" \
+  "/content/flickr8k_spoken_captions/flickr8k_dev_image.hdf5"

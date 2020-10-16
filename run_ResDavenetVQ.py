@@ -32,12 +32,12 @@ def load_args(old_args, exp_dir):
 
 def load_dataloaders(data_train, data_val, batch_size, num_workers):
     print('loading data from %s / %s' % (data_train, data_val))
-    train_dset = dataloaders.ImageCaptionDataset(data_train)
+    train_dset = dataloaders.ImageCaptionDatasetHDF5(data_train)
     train_loader = torch.utils.data.dataloader.DataLoader(
             train_dset, batch_size=batch_size, shuffle=True, 
             num_workers=num_workers, pin_memory=True)
     
-    val_dset = dataloaders.ImageCaptionDataset(
+    val_dset = dataloaders.ImageCaptionDatasetHDF5(
             data_val, image_conf={'center_crop':True})
     val_loader = torch.utils.data.dataloader.DataLoader(
             val_dset, batch_size=batch_size, shuffle=False,
