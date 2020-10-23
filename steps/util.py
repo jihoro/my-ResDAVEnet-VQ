@@ -93,6 +93,15 @@ def matchmapSim(M, simtype):
         return M_maxT.mean()
     else:
         raise ValueError
+    
+def Ilharco_NCE_loss(S, margin):
+    target = torch.LongTensor(list(range(S.size(0)))).to(S.device)
+    deltas = margin * torch.eye(S.size(0)).to(S.device)
+    S = S - deltas
+    I2C_loss = F.nll_loss(F.log_softmax(S, dim=1), target)            
+    C2I_loss = F.nll_loss(F.log_softmax(S.t(), dim=1), target)        
+    loss = I2C_loss + C2I_loss
+    return loss
 
 def sampled_margin_rank_loss(image_outputs, audio_outputs, nframes, margin=1., simtype='MISA'):
     """

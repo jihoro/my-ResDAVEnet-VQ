@@ -158,13 +158,13 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
             nframes = torch.floor_divide(nframes, pooling_ratio)
             S = compute_pooldot_similarity_matrix(
                     image_output, audio_output, nframes)
-            I2A_sampled_loss = sampled_triplet_loss_from_S(S, args.margin)
-            A2I_sampled_loss = sampled_triplet_loss_from_S(S.t(), args.margin)
-            I2A_hardneg_loss = semihardneg_triplet_loss_from_S(S, args.margin)
-            A2I_hardneg_loss = semihardneg_triplet_loss_from_S(S.t(), args.margin)
+            # I2A_sampled_loss = sampled_triplet_loss_from_S(S, args.margin)
+            # A2I_sampled_loss = sampled_triplet_loss_from_S(S.t(), args.margin)
+            # I2A_hardneg_loss = semihardneg_triplet_loss_from_S(S, args.margin)
+            # A2I_hardneg_loss = semihardneg_triplet_loss_from_S(S.t(), args.margin)
+            new_loss = Ilharco_NCE_loss(S, margin)
 
-            loss = I2A_sampled_loss + A2I_sampled_loss + \
-                   I2A_hardneg_loss + A2I_hardneg_loss
+            loss = new_loss
             qloss = [l for l in quant_losses if l is not None]
             qloss = torch.sum(torch.stack(qloss)) if bool(qloss) else None
             if qloss is not None:
@@ -197,8 +197,7 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
             batch_time = time.time()
             global_step += 1
 
-            del (I2A_sampled_loss, A2I_sampled_loss, I2A_hardneg_loss, 
-                 A2I_hardneg_loss, qloss, loss, S, 
+            del (new_loss, qloss, loss, S, 
                  image_output, audio_output, quant_losses, perplexities, 
                  flat_inputs, flat_onehots)
 
