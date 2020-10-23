@@ -162,7 +162,7 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
             # A2I_sampled_loss = sampled_triplet_loss_from_S(S.t(), args.margin)
             # I2A_hardneg_loss = semihardneg_triplet_loss_from_S(S, args.margin)
             # A2I_hardneg_loss = semihardneg_triplet_loss_from_S(S.t(), args.margin)
-            new_loss = Ilharco_NCE_loss(S, margin)
+            new_loss = Ilharco_NCE_loss(S, args.margin)
 
             loss = new_loss
             qloss = [l for l in quant_losses if l is not None]
