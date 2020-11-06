@@ -1,5 +1,5 @@
 h5py
-numba==0.45.0
+numba
 librosa
 matplotlib
 numpy

@@ -18,9 +18,9 @@ def run(json_path, hdf5_json_path, audio_path, image_path, audio_conf={}):
         data_and_dirs = json.load(f)
         data = data_and_dirs['data']
         # audio_base = data_and_dirs['audio_base_path']
-        audio_base = "/content/flickr8k_spoken_captions/wavs"
+        audio_base = "../flickr8k_spoken_captions/wavs"
         # image_base = data_and_dirs['image_base_path']
-        image_base = "/content/flickr8k_spoken_captions/imgs"
+        image_base = "../flickr8k_spoken_captions/imgs"
     print('Loaded %d data from %s' % (len(data), json_path))
 
     run_audio(data, audio_base, audio_path, audio_conf)

@@ -27,6 +27,7 @@ class ImageCaptionDatasetHDF5(Dataset):
         # delay creation until __getitem__ is first called
         self.audios = None
         self.images = None
+        self.dict = {}
         
         # audio features are pre-computed with default values.
         self.audio_conf = audio_conf
@@ -86,7 +87,7 @@ class ImageCaptionDatasetHDF5(Dataset):
         """
         audio, nframes = self._LoadAudio(index)
         image = self._LoadImage(index)
-        return image, audio, nframes
+        return image, audio, nframes, index
 
     def __len__(self):
         return self.n_samples
