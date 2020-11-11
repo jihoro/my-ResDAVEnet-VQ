@@ -28,6 +28,7 @@ class ImageCaptionDatasetHDF5(Dataset):
         self.audios = None
         self.images = None
         self.dict = {}
+        self.count = 0
         
         # audio features are pre-computed with default values.
         self.audio_conf = audio_conf
@@ -73,10 +74,13 @@ class ImageCaptionDatasetHDF5(Dataset):
             print('Loading image from %s' % self.image_hdf5_path)
             self.images = h5py.File(self.image_hdf5_path, 'r')
         binary_img = self.images['image'][index]
+        if binary_img  not in self.dict:
+            self.dict[binary_img] = self.count
+            self.count += 1
         img = Image.open(io.BytesIO(binary_img)).convert('RGB')
         img = self.image_resize_and_crop(img)
         img = self.image_normalize(img)
-        return img
+        return img, self.dict[binary_img]
 
     def __getitem__(self, index):
         """
@@ -86,8 +90,8 @@ class ImageCaptionDatasetHDF5(Dataset):
         nframes is an integer
         """
         audio, nframes = self._LoadAudio(index)
-        image = self._LoadImage(index)
-        return image, audio, nframes, index
+        image, i = self._LoadImage(index)
+        return image, audio, nframes, i
 
     def __len__(self):
         return self.n_samples

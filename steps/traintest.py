@@ -122,6 +122,17 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
     print("start training...")
     print(device)
     # Start training
+    
+    image_indices = []
+    for i, (image_input, audio_input, nframes, index) in enumerate(train_loader):
+        image_indices.append(index)
+    B = len(image_indices)
+    M = [[1]*B]*B
+    for i in range(B):
+        image_index = image_indices[i]
+        for j in range(B):
+            if image_indices[j] == image_index:
+                M[i][j] = 0
     while epoch <= args.n_epochs:
         torch.cuda.empty_cache()
         cur_lr = adjust_learning_rate(args.lr, args.lr_decay, 
