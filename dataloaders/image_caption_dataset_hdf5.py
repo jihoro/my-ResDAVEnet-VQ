@@ -74,13 +74,18 @@ class ImageCaptionDatasetHDF5(Dataset):
             print('Loading image from %s' % self.image_hdf5_path)
             self.images = h5py.File(self.image_hdf5_path, 'r')
         binary_img = self.images['image'][index]
-        if binary_img  not in self.dict:
-            self.dict[binary_img] = self.count
+        # my code / check again
+        path = self.images['path'][index]
+        # print('path of this image is', path)
+        if path  not in self.dict:
+            self.dict[path] = self.count
             self.count += 1
+        #end of my code
         img = Image.open(io.BytesIO(binary_img)).convert('RGB')
         img = self.image_resize_and_crop(img)
         img = self.image_normalize(img)
-        return img, self.dict[binary_img]
+        #mycode
+        return img, self.dict[path]
 
     def __getitem__(self, index):
         """

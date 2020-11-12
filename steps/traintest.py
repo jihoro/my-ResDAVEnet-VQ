@@ -123,16 +123,16 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
     print(device)
     # Start training
     
-    image_indices = []
-    for i, (image_input, audio_input, nframes, index) in enumerate(train_loader):
-        image_indices.append(index)
-    B = len(image_indices)
-    M = [[1]*B]*B
-    for i in range(B):
-        image_index = image_indices[i]
-        for j in range(B):
-            if image_indices[j] == image_index:
-                M[i][j] = 0
+    # image_indices = []
+    # for i, (image_input, audio_input, nframes, index) in enumerate(train_loader):
+    #     image_indices.append(index)
+    # B = len(image_indices)
+    # M = [[1]*B]*B
+    # for i in range(B):
+    #     image_index = image_indices[i]
+    #     for j in range(B):
+    #         if image_indices[j] == image_index:
+    #             M[i][j] = 0
     while epoch <= args.n_epochs:
         torch.cuda.empty_cache()
         cur_lr = adjust_learning_rate(args.lr, args.lr_decay, 
@@ -143,11 +143,19 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
         batch_time = time.time()
         audio_model.train()
         image_model.train()
-        for i, (image_input, audio_input, nframes) in enumerate(train_loader):
+        for i, (image_input, audio_input, nframes, indices) in enumerate(train_loader):
             data_timer.update(time.time() - batch_time)
             start_time = time.time()
+            print('done loading images')
             B = audio_input.size(0)
             T = audio_input.size(-1)
+            M = torch.ones(B, B)
+            for j in range(len(indices)):
+                for k in range(len(indices)):
+                    if indices[j] == indices[k]:
+                        M[j,k] = 0
+
+            print(M)
             audio_input = audio_input.to(device)
             image_input = image_input.to(device)
 

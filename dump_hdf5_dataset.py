@@ -43,17 +43,24 @@ def run_image(data, image_base, image_path):
     Path(os.path.dirname(image_path)).mkdir(parents=True, exist_ok=True)
     f = h5py.File(image_path, 'w')
     dt = h5py.special_dtype(vlen=np.dtype('uint8'))
+    dstr = h5py.special_dtype(vlen=str)
     dset_img = f.create_dataset('image', (n,), dtype=dt)
-    
+    #my code
+    dset_path = f.create_dataset('path', (n,), dtype = dstr)
+    #end of my code
     start = time.time()
     for i, d in enumerate(data):
         with open('%s/%s' % (image_base, d['image']), 'rb') as f_img:
             binary_img = f_img.read()
         dset_img[i] = np.frombuffer(binary_img, dtype='uint8')
+        #my code
+        dset_path[i] = d['image']
 
+        #end
         if i % 100 == 0:
             t = time.time() - start
             print('processed %d / %d images (%.fs)' % (i, n, t))
+            print(dset_path[i])
 
 
 def run_audio(data, audio_base, audio_path, audio_conf):
