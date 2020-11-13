@@ -143,10 +143,11 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
         batch_time = time.time()
         audio_model.train()
         image_model.train()
+        print('going to loop')
         for i, (image_input, audio_input, nframes, indices) in enumerate(train_loader):
             data_timer.update(time.time() - batch_time)
             start_time = time.time()
-            print('done loading images')
+            # print('done loading images')
             B = audio_input.size(0)
             T = audio_input.size(-1)
             M = torch.ones(B, B)
@@ -155,7 +156,7 @@ def train(audio_model, image_model, train_loader, test_loader, args, exp_dir, re
                     if indices[j] == indices[k]:
                         M[j,k] = 0
 
-            print(M)
+            print('done with matrix')
             audio_input = audio_input.to(device)
             image_input = image_input.to(device)
 
