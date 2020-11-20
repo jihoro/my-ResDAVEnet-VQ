@@ -98,7 +98,7 @@ def matchmapSim(M, simtype):
 def Ilharco_NCE_loss(S, margin):
     target = torch.LongTensor(list(range(S.size(0)))).to(S.device)
     deltas = margin * torch.eye(S.size(0)).to(S.device)
-    S = S - deltas
+    S = S - deltas # S * M
     I2C_loss = F.nll_loss(F.log_softmax(S, dim=1), target)            
     C2I_loss = F.nll_loss(F.log_softmax(S.t(), dim=1), target)        
     loss = I2C_loss + C2I_loss
